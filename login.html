@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="public/stylelogin.css">
+  <title>Login</title>
+</head>
+<body>
+  <div class = "center">
+    <img src="public/CY-Tech_coul.png" alt="Logo">
+    <h1> Bienvenue </h1>
+    <form id="loginForm">
+      <div class="txt_field">
+        <input type="text" id="username" required>
+        <span> </span>
+        <label>Identifiant </label>
+      </div>
+      <div class="txt_field">
+        <input type="password" id="password" required>
+        <span> </span>
+        <label> Mot de passe </label>
+      </div>
+      <input type="submit" value="Se connecter">
+      <div class="forgot"> Mot de passe oublié </div>
+      <div class="users_signup">
+        Vous n'avez pas de compte ? <a href="#">S'inscrire</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Manually check username and password
+    if (username === 'admin' && password === 'admin') {
+        window.location.href = 'quiz.html'; // Redirect to admin page
+    } else {
+        alert('Incorrect username or password');
+    }
+});
+  </script>
+</body>
+</html>
