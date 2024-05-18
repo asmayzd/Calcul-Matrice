@@ -17,7 +17,7 @@ body {
     left: 50%;
     transform: translate(-50%, -40%);
     width: 500px;
-    height: 520px;
+    height: 535px;
     background: #f2f2f2;
     border-radius: 2px;
     text-align: center;
@@ -75,13 +75,13 @@ form .txt_field {
     left: 0;
     width: 100%;
     height: 2px;
-    background: #2691d9;
+    background: #91a4d9;
 }
 
 .txt_field input:focus~label,
 .txt_field input:valid~label {
     top: -5px;
-    color: #2691d9;
+    color: #91a4d9;
 }
 
 
@@ -99,7 +99,7 @@ input[type="submit"] {
     width: 100%;
     height: 50px;
     border: 1px solid;
-    background-color: #2691d9;
+    background-color: #91a4d9;
     border-radius: 15px;
     font-size: 16px;
     color: #e9f4fb;
@@ -109,7 +109,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    border-color: #2691d9;
+    border-color: #91a4d9;
     transition: .5s;
 }
 
@@ -121,7 +121,7 @@ input[type="submit"]:hover {
 }
 
 .users_signup a {
-    color: #2691d9;
+    color: #91a4d9;
     text-decoration: none;
 }
 

@@ -52,7 +52,6 @@ function calculateEigenvalues(matrix) {
     const ans = eigs(matrix) // returns {values: [E1,E2...sorted], eigenvectors: [{value: E1, vector: v2}, {value: e, vector: v2}, ...]
     const E = ans.values.map(value => parseFloat(value.toFixed(2))); // Convert to fixed values
     E.sort((a, b) => b - a);
-    //console.log(E)
     return E
 }
 
@@ -66,15 +65,150 @@ function calculateEigenvectors(matrix) {
 
     const unnormalizedEigenvectors = V.map((eigenvector) => {
         const { vector } = eigenvector;
-        const magnitude = math.norm(vector); // Calculate the magnitude of the vector
-        const unnormalizedVector = math.multiply(1 / magnitude, vector); // Scale the vector back to its original magnitude
-        return { value: eigenvector.value, vector: unnormalizedVector };
+        // Resize the vector to a size of 2
+        const resizedVector = vector.slice(0, 2);
+        return { value: eigenvector.value, vector: resizedVector };
     })
     //console.log(V);
     //console.log(unnormalizedEigenvectors);
     return unnormalizedEigenvectors
 }
+function sendCredentials(username, password) {
+    // Replace 'yourWebServiceURL' with the actual URL of your web service
+    const url = '/scripts/register.php';
 
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username, password: password }),
+    }).then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+            let content = document.getElementsByClassName('gestion-utilisateur-content');
+            let table = '<table id="users"><tr><th>Username</th><th>Role</th><th>Action</th></tr>';
+            for (const user in data) {
+                if (Object.hasOwnProperty.call(data, user)) {
+                    const userInfo = data[user];
+                    if (user != 'admin')
+                        table += `<tr><td>${user}</td><td>${userInfo.role}</td><td><button type='button' onclick='deleteUser("${user}")'>supprimer</button></td></tr>`;
+                    else
+                        table += `<tr><td>${user}</td><td>${userInfo.role}</td><td></td></tr>`;
+                }
+            }
+            table += '</table>';
+            content[0].innerHTML = table;
+        })
+        .catch(error => {
+            alert('Erreur lors de l\'enregistrement');
+        });
+}
+function deleteUser(username) {
+
+    const url = '/scripts/delete.php';
+    //message de confirmation
+    let confirmation = confirm("Voulez-vous vraiment supprimer cet utilisateur?");
+    if (!confirmation) {
+        return;
+    }
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username }),
+    }).then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+            let content = document.getElementsByClassName('gestion-utilisateur-content');
+            let table = '<table id="users"><tr><th>Username</th><th>Role</th><th>Action</th></tr>';
+            for (const user in data) {
+                if (Object.hasOwnProperty.call(data, user)) {
+                    const userInfo = data[user];
+                    if (user != 'admin')
+                        table += `<tr><td>${user}</td><td>${userInfo.role}</td><td><button type='button' onclick='deleteUser("${user}")'>supprimer</button></td></tr>`;
+                    else
+                        table += `<tr><td>${user}</td><td>${userInfo.role}</td><td></td></tr>`;
+                }
+            }
+            table += '</table>';
+            content[0].innerHTML = table;
+        })
+        .catch(error => {
+            alert('Erreur lors de la suppression');
+        });
+
+}
+
+// Function to prompt user for username and password
+function promptForCredentials() {
+    const username = prompt('Merci de saisir le nom d\'utilisateur:');
+    const password = prompt('Merci de saisir le mot de passe:');
+
+    if (username && password) {
+        sendCredentials(username, password);
+    } else {
+        alert('Username or password not provided');
+    }
+}
+function logout() {
+    Cookies.remove('user');
+    window.location.href = 'index.html';
+}
+function navigateByDisplay(object, className) {
+    let elements = document.getElementsByClassName(className);
+    let menu = document.getElementsByClassName('menu-button');
+    let menuContent = document.getElementsByClassName('menu-content');
+    for (let i = 0; i < menuContent.length; i++) {
+        menuContent[i].style.display = 'none';
+    }
+    for (let i = 0; i < menu.length; i++) {
+        menu[i].classList.remove('active');
+    }
+    if (className == 'gestion-utilisateur') {
+        let content = document.getElementsByClassName('gestion-utilisateur-content');
+        fetch('/scripts/users.php',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => response.json())
+            .then(data => {
+                let table = '<table id="users"><tr><th>Username</th><th>Role</th><th>Action</th></tr>';
+                for (const user in data) {
+                    if (Object.hasOwnProperty.call(data, user)) {
+                        const userInfo = data[user];
+                        if (user != 'admin')
+                            table += `<tr><td>${user}</td><td>${userInfo.role}</td><td><button type='button' onclick='deleteUser("${user}")'>supprimer</button></td></tr>`;
+                        else
+                            table += `<tr><td>${user}</td><td>${userInfo.role}</td><td></td></tr>`;
+                    }
+                }
+                table += '</table>';
+                content[0].innerHTML = table;
+            });
+    }
+    elements[0].style.display = 'block';
+    object.classList.add('active');
+}
+function showDesc(className) {
+    let elements = document.getElementsByClassName(className);
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].style.display === 'block')
+            elements[i].style.display = 'none';
+        else
+            elements[i].style.display = 'block';
+    }
+}
 function diagonalize(matrix) {
     const { eigs, diag } = math
     const { values } = eigs(matrix);
@@ -144,17 +278,25 @@ function setupMatrix() {
     document.getElementById('operation-section').style.display = 'flex';
 }
 
-document.getElementById('setupmat').addEventListener('click', setupMatrix);
-
 function getMatrix() {
     matrix = [];
+    let hasError = false;
     for (let i = 0; i < matrixSize; i++) {
         const row = [];
         for (let j = 0; j < matrixSize; j++) {
+            if (document.getElementById(`element-${i}-${j}`).value == '' || isNaN(document.getElementById(`element-${i}-${j}`).value)) {
+                document.getElementById(`element-${i}-${j}`).classList.add('error');
+                hasError = true;
+            } else {
+                document.getElementById(`element-${i}-${j}`).classList.remove('error');
+            }
             const element = parseFloat(document.getElementById(`element-${i}-${j}`).value);
             row.push(element);
         }
         matrix.push(row);
+    }
+    if (hasError) {
+        return false;
     }
     return matrix;
 }
@@ -163,6 +305,9 @@ function getMatrix() {
 function performOperation() {
     showQuestion();
     const matrix = getMatrix();
+    if (!matrix) {
+        return;
+    }
     operation = document.getElementById('operation').value;
     let correctAnswer;
     let abscorrectAnswer;
@@ -174,18 +319,14 @@ function performOperation() {
         case 'eigenvalues':
             correctAnswer = calculateEigenvalues(matrix);
             correctAnswer = correctAnswer.map(value => parseFloat(value)).sort().join(',');
-            console.log("correctAnswer", correctAnswer);
             break;
         case 'eigenvectors':
             correctAnswer = calculateEigenvectors(matrix);
             abscorrectAnswer = correctAnswer.map(eigenvector => eigenvector.vector.map(value => parseFloat(Math.abs(value)).toFixed(3)).sort().join(',')).join(';');
             correctAnswer = correctAnswer.map(eigenvector => eigenvector.vector.map(value => parseFloat(value).toFixed(3)).sort().join(',')).join(';');
-            console.log("correctAnswer.toString()", correctAnswer.toString());
-            console.log("abscorrectAnswer.toString()", abscorrectAnswer.toString());
             break;
         case 'diagonalize':
             correctAnswer = diagonalize(matrix);
-            console.log("diagonalize", correctAnswer)
             break;
         case 'name':
             break;
