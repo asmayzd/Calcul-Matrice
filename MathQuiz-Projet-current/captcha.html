@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/style_captcha.css">
+</head>
+
+<body>
+    <!--Entete de la page-->
+    <header class="header-menu">
+        <nav style="font-size: 13px;">
+        <ul>
+            <li> <a href="home.html" class="logo-link">
+                <img src="images/cytech.png" alt="Logo" class="logo">
+            </a> </li>
+            <li> <a href="home.html" class="logo-link">
+                <img src="images/logo.png" alt="Logo" class="logo">
+            </a> </li>
+            <li style="font-size: 22px;font-family: Georgia, 'Times New Roman', Times, serif;">         MATHQUIZ         </h1></li>
+        </ul>
+        </nav>
+    </header>
+
+    <section>
+        <br><br>
+        <div class="center">
+            <br><br>
+            
+            <h1 id="captchaHeading">
+                <p>Vérifiez que vous êtes un humain ...</p>
+            </h1>
+
+            <div id="captchaBackground">
+                <canvas id="captcha">Tapez les caractères : </canvas>
+                <input id="textBox" type="text" name="text">
+
+                <div id="buttons">
+                    <input id="submitButton" type="submit">
+                    <button id="refreshButton" type="submit">Rafraichir</button>
+                </div>
+
+                <span id="output"></span>
+            </div>
+        </div>
+    </section>
+
+    <!--Pied de la page-->
+    <footer>
+        <p style="font-size: 11px; "> CyTech . MathQuiz . Tous droits réservés  &copy  2024</p>
+    </footer>
+
+
+    <script src="scripts/scriptCaptcha.js"></script>
+</body>
+
+</html>

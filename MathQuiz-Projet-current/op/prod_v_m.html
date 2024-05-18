@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit V x M</title>
+    <link rel="stylesheet" href="../styles/style.css?v=1.0">
+    <link rel="icon" href="../images/logo.png" type="image/png">
+
+    <!--Partie JS relative au calcule de cette page-->
+    <script>
+        function calculerProduitVecteurMatrice() {
+            // Créer le vecteur et la matrice
+            const vecteur = [];
+            const matrice = [];
+            const produit = [];
+
+            // Remplir le vecteur à partir des entrées utilisateur
+            for (let i = 0; i < 3; i++) {
+                vecteur[i] = parseFloat(document.getElementById(`vecteur-${i}`).value) || 0;
+            }
+
+            // Remplir la matrice à partir des entrées utilisateur
+            for (let i = 0; i < 3; i++) {
+                matrice[i] = [];
+                for (let j = 0; j < 3; j++) {
+                    matrice[i][j] = parseFloat(document.getElementById(`matrice-${i}-${j}`).value) || 0;
+                }
+            }
+
+            // Calculer le produit vecteur * matrice
+            for (let i = 0; i < 3; i++) {
+                produit[i] = 0;
+                for (let j = 0; j < 3; j++) {
+                    produit[i] += vecteur[j] * matrice[j][i];
+                }
+            }
+
+            // Afficher le produit dans le vecteur de résultat
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`produit-${i}`).value = produit[i];
+            }
+        }
+
+        function afficherMethodeProduit() {
+            // Obtenir l'élément pour afficher la méthode d'addition de matrices
+            const explicationElement = document.getElementById('explication-methode');
+
+            // Créer le contenu de l'explication
+            const explicationContenu = `
+                <h2>Méthode de calcul du produit d'un vecteur par une matrice 3x3</h2>
+                <p>Pour calculer le produit d'un vecteur par une matrice 3x3, multipliez chaque élément du vecteur par les éléments correspondants de chaque colonne de la matrice et additionnez les produits.</p>
+                <p>Soient le vecteur V et la matrice M :</p>
+                <p>V = [v₁ v₂ v₃]</p>
+                <p>M = [m₁₁ m₁₂ m₁₃]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[m₂₁ m₂₂ m₂₃]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[m₃₁ m₃₂ m₃₃]
+                </p>
+                <p>Le produit du vecteur V par la matrice M, noté P, est obtenu en multipliant les éléments de V par les éléments correspondants de M et en sommant les produits :</p>
+                <p>P = [v₁*m₁₁ + v₂*m₂₁ + v₃*m₃₁ v₁*m₁₂ + v₂*m₂₂ + v₃*m₃₂ v₁*m₁₃ + v₂*m₂₃ + v₃*m₃₃]</p>
+            
+            `;
+            // Ajouter le contenu d'explication à l'élément
+            explicationElement.innerHTML = explicationContenu;
+        }
+        function afficherBravo(){
+            // Obtenir l'élément pour afficher la méthode d'addition de matrices
+            const explicationElement = document.getElementById('explication-methode');
+
+            // Créer le contenu de l'explication
+            const explicationContenu = `
+               <h1>FELICITATIONS</h1>
+            `;
+            // Ajouter le contenu d'explication à l'élément
+            explicationElement.innerHTML = explicationContenu;
+        }
+    </script>
+   
+</head>
+
+<body>
+    <!--Entete de la page-->
+  <header class="header-menu">
+    <nav style="font-size: 13px;">
+      <ul>
+        <li>
+          <a href="../home.html" class="logo-link">
+            <img src="../images/cytech.png" alt="Logo" class="logo">
+          </a>
+        </li>
+        <li>
+          <a href="../home.html" class="logo-link">
+            <img src="../images/logo.png" alt="Logo" class="logo">
+          </a>
+        </li>
+        <li style="font-size: 22px;font-family: Georgia, 'Times New Roman', Times, serif;">         MATHQUIZ         </h1></li>
+        <li><a href="somme.html">Somme</a></li>
+        <li><a href="soustraction.html">Soustraction</a></li>
+        <li><a href="division.html">Division</a></li>
+        <li><a href="determinant.html">Déterminant</a></li>
+        
+        <li><a href="../ressources.html">Cours & exos</a></li>
+        <li><a href="https://cytech.cyu.fr/">Qui sommes-nous ? </a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section style="font-size: 12px;">
+    <br><br>
+    <div class="welcome-container">
+        <div class="logo-container">
+            <img src="../images/logo.png" alt="Logo" class="logo">
+        </div>
+           
+        <div class="main-container">
+            <h2>Produit d'un vecteur par une matrice 3x3</h2>
+            <br>
+            <p>Remplissez les valeurs du vecteur et de la matrice 3x3 ci-dessous:</p>
+            <br><br>
+
+            <!-- Vecteur -->
+            <h4>Vecteur</h4>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input type="number" id="vecteur-0" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="vecteur-1" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="vecteur-2" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+
+            <!-- Matrice 3x3 -->
+            <h4>Matrice 3x3</h4>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input type="number" id="matrice-0-0" value="0"></td>
+                        <td><input type="number" id="matrice-0-1" value="0"></td>
+                        <td><input type="number" id="matrice-0-2" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="matrice-1-0" value="0"></td>
+                        <td><input type="number" id="matrice-1-1" value="0"></td>
+                        <td><input type="number" id="matrice-1-2" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="matrice-2-0" value="0"></td>
+                        <td><input type="number" id="matrice-2-1" value="0"></td>
+                        <td><input type="number" id="matrice-2-2" value="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <!-- Bouton pour calculer le produit vecteur * matrice -->
+            <button onclick="calculerProduitVecteurMatrice()">Calculer le produit</button>
+            <br><br>
+
+            <!-- Matrice de résultat -->
+            <h4>Résultat</h4>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input type="number" id="produit-0" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="produit-1" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="produit-2" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+
+            <h3>Tu as compris ?</h3>
+            <button class="button-53" role="button" onclick="afficherBravo()">OUI 💪</button>
+            <button class="button-53" role="button" onclick="afficherMethodeProduit()">NON :( </button>
+            
+            <br><br>
+            <!-- Cet élément affichera l'explication de la méthode d'addition de matrices -->
+            <div id="explication-methode" class="explication"></div>
+
+        </div>
+        <div class="right-container">
+            <!--Boutton Revenir au Menu-->
+            <button  style="border-radius: 50%;  width: 70%; font-weight: bold;" onclick="window.location.href = '../welcome.html';">Menu Principal</button>
+        </div>
+    </div>
+</section>
+  
+<!--Pied de la page-->
+<footer>
+  <p style="font-size: 11px; "> CyTech . MathQuiz . Tous droits réservés  &copy  2024</p>
+</footer>
+
+</body>
+
+</html>
