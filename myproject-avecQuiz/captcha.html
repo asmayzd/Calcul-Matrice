@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice de Matrices</title>
+    <link rel="stylesheet" href="public/styles.css?v=1.25">
+    <!-- Ajout de Math.js depuis un CDN -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.2.0/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>-->
+    <!-- <script src="https://unpkg.com/ml-matrix"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/ml-matrix@6.11.0/matrix.umd.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.1/math.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
+</head>
+
+<body>
+
+
+    <!-- Inside the body tag -->
+    <header>
+        <p id="connected" style="display: none;">Bienvenue :&nbsp;<span id="user-name"></span>
+            <button style="position: absolute; right: 20px;" onclick="logout()">Déconnexion</button>
+        </p>
+        <p id="not-connected" style="display: none;">
+            
+        </p>
+    </header>
+    <div class="main-container">
+        <div class="menu-container">
+            <img src="public/CY-Tech_coul.png" alt="Logo">
+            <ul class="menu">
+                <a class="menu-button" href="index.html?func=calcul-matriciel" onclick="navigateByDisplay(this, 'calcul-matriciel')">Exercices</a>
+                <a class="menu-button active" href="captcha.html">Quiz</a>
+                <a class="menu-button admin-role" href="index.html?func=gestion-utilisateur" style="display: none;"
+                    onclick="navigateByDisplay(this, 'gestion-utilisateur')">Gestion des utilisateurs</a>
+                <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/"
+                    target="_blank">Cours</a>
+                <!-- <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/"
+                    target="_blank">Exercices</a> -->
+                <a class="menu-button" href="https://cytech.cyu.fr/" target="_blank">CY Tech</a>
+            </ul>
+        </div>
+        <div class="container">
+
+            <div class="main-element">
+                <h1>Vérifiez que vous êtes un humain ...</h1>
+                <div id="math-descriptions" class="eigenvalues" >
+                    <div id="captchaBackground">
+                        <canvas id="captcha"></canvas>
+                        <input id="textBox" type="text" name="text">
+                        <br><br>
+                        <div id="buttons">
+                            <input id="submitButton" type="submit">
+                            <button id="refreshButton" type="submit">Rafraichir</button>
+                        </div>
+        
+                        <span id="output"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="public/script2.js?v=1.56"></script>
+    <script src="scripts/scriptCaptcha.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+</body>
+<footer>
+    <p>&copy; 2024 Calculatrice de Matrices</p>
+    <div class="footer-social">
+        <a href="https://www.facebook.com/CYTechGE" target="_blank"><img
+                src="https://cytech.cyu.fr/jspOM/images/icons/facebook.svg" width="30" alt="Facebook"></a>
+        <a href="https://www.instagram.com/cy.tech/" target="_blank"><img
+                src="https://cytech.cyu.fr/jspOM/images/icons/instagram.svg" width="30" alt="Instagram"></a>
+        <a href="https://twitter.com/CY__Tech" target="_blank"><img
+                src="https://cytech.cyu.fr/jspOM/images/icons/twitter.svg" width="30" alt="Twitter"></a>
+        <a href="https://www.linkedin.com/school/cy-tech/" target="_blank"><img
+                src="https://cytech.cyu.fr/jspOM/images/icons/linkedin.svg" width="30" alt="LinkedIn"></a>
+        <a href="https://www.youtube.com/c/CYTech_GE" target="_blank"><img
+                src="https://cytech.cyu.fr/jspOM/images/icons/youtube.svg" width="30" alt="YouTube"></a>
+    </div>
+</footer>
+
+</html>

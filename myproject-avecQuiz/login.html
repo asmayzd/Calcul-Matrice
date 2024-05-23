@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
+  <link rel="stylesheet" href="public/stylelogin.css?v=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+  <div class="center">
+    <img src="public/CY-Tech_coul.png" alt="Logo">
+    <form id="loginForm">
+      <h1> Bienvenue </h1>
+      <div class="txt_field">
+        <input type="text" id="username" required>
+        <span> </span>
+        <label>Identifiant </label>
+      </div>
+      <div class="txt_field">
+        <input type="password" id="password" required>
+        <span> </span>
+        <label> Mot de passe </label>
+      </div>
+      <input type="submit" value="Se connecter">
+      <div class="users_signup">
+        Vous n'avez pas de compte ? <a onclick="register()"  style="cursor: pointer;">S'inscrire</a>
+      </div>
+    </form>
+    <form id="registerForm" style="display: none;">
+      <h1> Inscription </h1>
+      <div class="txt_field">
+        <input type="text" id="rUsername" required>
+        <span> </span>
+        <label>Identifiant </label>
+      </div>
+      <div class="txt_field">
+        <input type="password" id="rPassword" required>
+        <span> </span>
+        <label> Mot de passe </label>
+      </div>
+      <div class="txt_field">
+        <input type="password" id="confirmPassword" required>
+        <span> </span>
+        <label> Confirmer le mot de passe </label>
+      </div>
+      <input type="submit" value="S'inscrire" onclick="registerUser(event)">
+      <div class="users_signup">
+        Vous avez déjà un compte ? <a onclick="document.getElementById('registerForm').style.display = 'none';document.getElementById('loginForm').style.display = 'block';" style="cursor: pointer;">Se connecter</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function registerUser(e){
+      e.preventDefault();
+      const username = document.getElementById('rUsername').value;
+      const password = document.getElementById('rPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      if(password !== confirmPassword){
+        alert('Les mots de passe ne correspondent pas');
+        return;
+      }
+      if(username === '' || password === ''){
+        alert('Veuillez remplir tous les champs');
+        return;
+      }
+      fetch("/scripts/register.php", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          password: password
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then(response => response.json())
+      .then(response => {
+        if(response.error){
+          alert(response.error);
+        } else {
+          alert('Inscription réussie');
+          document.getElementById('registerForm').style.display = 'none';
+          document.getElementById('loginForm').style.display = 'block';
+        }
+      });
+    }
+    function register() {
+      //on cache le formulaire de login
+      document.getElementById('loginForm').style.display = 'none';
+      //on affiche le formulaire d'inscription
+      document.getElementById('registerForm').style.display = 'block';
+    }
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      let response = await fetch("/scripts/login.php", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username,
+          password: password
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      });
+      response = await response.json();
+      if (response.error) {
+        alert(response.error);
+      } else {
+        Cookies.set("user", JSON.stringify({
+          role: response.role,
+          username: username
+        }), {
+          path: "/",
+          expires: new Date(new Date().getTime() + (60 * 360 * 1000))
+        });
+        //get the return url
+        const urlParams = new URLSearchParams(window.location.search);
+        const returnUrl = urlParams.get('returnUrl');
+        if (returnUrl) {
+          window.location.href = returnUrl;
+        }
+        else {
+          window.location.href = 'index.html';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
