@@ -1,9 +1,11 @@
 # MathQuiz
 
 
-Lien pour acceder au site : https://templates.mangalibrary.online/bouhorma/
+Lien pour accéder au site : https://templates.mangalibrary.online/bouhorma/
 
-Pour accéder à l'interface administrateur  : identifiant : admin ; mot de passe : admin
+
+
+Pour un rapport détaillé du projet : RapportMathquiz_Bouhorma-Dikra_Ouadah-Shaima_Yazidi-Asma.pdf
 
 
 
