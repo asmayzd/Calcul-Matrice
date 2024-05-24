@@ -1,3 +1,4 @@
+/* Styles globaux pour le corps de la page */
 body {
     margin: 0;
     padding: 0;
@@ -9,8 +10,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Réinitialise les marges et le padding, définit la police, ajoute une image de fond, et centre le contenu */
 }
 
+/* Styles pour le conteneur central */
 .center {
     position: absolute;
     top: 45%;
@@ -21,32 +24,41 @@ body {
     background: #f2f2f2;
     border-radius: 2px;
     text-align: center;
+    /* Positionne le conteneur au centre, définit la taille, la couleur de fond et le style de bordure */
 }
 
+/* Styles pour l'image dans le conteneur central */
 .center img {
     width: 250px;
     height: 100px;
     margin-bottom: 20px;
+    /* Taille et espacement de l'image */
 }
 
+/* Styles pour le titre dans le conteneur central */
 .center h1 {
     text-align: center;
     padding: 0 0 2 0px 0;
     border-bottom: 1px solid silver;
 }
 
+/* Styles pour le formulaire dans le conteneur central */
 .center form {
     padding: 0 60px;
     box-sizing: border-box;
+    /* Padding et dimensionnement du formulaire */
 }
 
 
+/* Styles pour les champs de texte du formulaire */
 form .txt_field {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
+    /* Positionnement et style de bordure pour les champs de texte */
 }
 
+/* Styles pour les entrées de texte */
 .txt_field input {
     width: 100%;
     padding: 0 5px;
@@ -55,8 +67,10 @@ form .txt_field {
     border: none;
     background: none;
     outline: none;
+    /* Taille, padding, et suppression des bordures pour les entrées de texte */
 }
 
+/* Styles pour les labels des champs de texte */
 .txt_field label {
     position: absolute;
     top: 50%;
@@ -66,8 +80,10 @@ form .txt_field {
     font-size: 16px;
     pointer-events: none;
     transition: .5s;
+    /* Positionnement, couleur et transition pour les labels */
 }
 
+/* Styles pour les spans des champs de texte *
 .txt_field span::before {
     content: '';
     position: absolute;
@@ -76,25 +92,32 @@ form .txt_field {
     width: 100%;
     height: 2px;
     background: #91a4d9;
+    /* Positionnement et couleur de fond pour les spans */
 }
 
+/* Styles pour les labels des champs de texte lorsqu'ils sont en focus ou valides */
 .txt_field input:focus~label,
 .txt_field input:valid~label {
     top: -5px;
     color: #91a4d9;
+    /* Positionnement et couleur des labels en état focus ou valide */
 }
 
 
+/* Styles pour le lien "Mot de passe oublié" */
 .forgot {
     margin: 20px 0 10px 5px;
     color: #a6a6a6;
     cursor: pointer;
+    /* Marges, couleur et curseur pour le lien */
 }
 
 .forgot:hover {
     text-decoration: underline;
+    /* Soulignement du lien au survol */
 }
 
+/* Styles pour le bouton de soumission */
 input[type="submit"] {
     width: 100%;
     height: 50px;
@@ -111,20 +134,26 @@ input[type="submit"] {
 input[type="submit"]:hover {
     border-color: #91a4d9;
     transition: .5s;
+    /* Transition et couleur de bordure pour le bouton de soumission au survol */
 }
 
+/* Styles pour la section d'inscription des utilisateurs */
 .users_signup {
     margin: 30px 0;
     text-align: center;
     font-size: 16px;
     color: #666666;
+    /* Marges, alignement et couleur du texte pour la section d'inscription */
 }
 
+/* Styles pour les liens dans la section d'inscription */
 .users_signup a {
     color: #91a4d9;
     text-decoration: none;
+    /* Couleur et suppression du soulignement pour les liens */
 }
 
 .users_signup a:hover {
     text-decoration: underline;
+    /* Soulignement des liens au survol */
 }
