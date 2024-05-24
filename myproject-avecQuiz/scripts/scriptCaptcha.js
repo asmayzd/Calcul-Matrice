@@ -1,6 +1,10 @@
+// Sélectionne l'élément canvas pour le captcha
 let captchaText = document.getElementById('captcha');
+// Obtient le contexte de rendu 2D du canvas
 var ctx = captchaText.getContext("2d");
+// Définit la police et la taille du texte pour le captcha
 ctx.font = "25px Roboto";
+// Définit la couleur de remplissage pour le texte
 ctx.fillStyle = "#000";
 
 let userText = document.getElementById('textBox');
