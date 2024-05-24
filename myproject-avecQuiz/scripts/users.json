@@ -1,6 +1,6 @@
 {
     "admin": {
-        "role": "admin",// Rôle de l'utilisateur, ici admin
+        "role": "admin", // Rôle de l'utilisateur, ici admin
         "password": "21232f297a57a5a743894a0e4a801fc3" // Mot de passe de l'utilisateur, ici stocké sous forme de hachage MD5
     }
 }
