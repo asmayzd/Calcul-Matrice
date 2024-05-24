@@ -69,6 +69,8 @@ Lorsque vous souhaitez vous connecter ou accéder à la rubrique Quiz, vous deve
 ![image(10)](Test/10...png)
 
 Pour se connecter il suffit d’entrer un identifiant et un mot de passe. Si l’utilisateur n’a pas de compte il peut alors en créer un en cliquant sur : S’inscrire.
+
+
 ![image(11)](Test/11...png)
 
 
