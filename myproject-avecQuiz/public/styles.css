@@ -1,7 +1,9 @@
+/* Styles pour les écrans de type smartphone avec une largeur maximale de 850px */
 @media only screen and (max-width: 850px) {
     .main-container {
         display: flex;
         flex-direction: column;
+        /* Affiche les éléments en colonne */
     }
     .menu-container {
         width: 80% !important;
@@ -9,31 +11,38 @@
         margin: auto;
         margin-bottom: 25px !important;
         left: 0px !important;
+        /* Ajuste la largeur et la position du menu */
     }
     #operation-section,
     .input-section {
         flex-direction: column;
+        /* Affiche les sections d'opération et d'entrée en colonne */
     }
 }
 
+/* Styles pour le tableau des utilisateurs */
 #users {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+     /* Utilise une police sans-serif et un effondrement des bordures */
 }
 
 #users td,
 #users th {
     border: 1px solid #ddd;
     padding: 8px;
+    /* Bordures et padding pour les cellules du tableau */
 }
 
 #users tr:nth-child(even) {
     background-color: #f2f2f2;
+    /* Couleur de fond pour les lignes paires */
 }
 
 #users tr:hover {
     background-color: #ddd;
+    /* Couleur de fond au survol des lignes */
 }
 
 #users th {
@@ -42,26 +51,35 @@
     text-align: left;
     background-color: #91a4d9;
     color: white;
+    /* Styles pour les en-têtes de colonne */
 }
+/* Styles pour la section des réseaux sociaux dans le pied de page */
 .footer-social {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    /* Flexbox pour centrer les icônes et ajouter un espacement */
 }
 .footer-social img {
     width: 30px;
     height: 30px;
+    /* Taille des icônes des réseaux sociaux */
 }
+/* Styles globaux pour le corps de la page */
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     margin: 0;
     padding: 0;
+    /* Utilise une police sans-serif et un fond gris clair */
 }
+/* Styles pour le conteneur principal */
 .main-container {
     display: flex;
+    /* Utilise Flexbox pour le conteneur principal */
 }
+/* Styles pour le conteneur interne */
 .container {
     width: 70%;
     margin: 0px auto 0px auto;
@@ -71,13 +89,18 @@ body {
     background-color: #fafafa;
     height: 100%;
     min-height: 100vh;
+    /* Centrage du contenu avec une largeur fixe et un fond blanc cassé */
 }
+}
+/* Styles pour l'élément principal */
 .main-element {
     background-color: #fafafa;
     flex-direction: column;
     margin: auto;
     margin-top: 50px;
+    /* Flexbox pour afficher les éléments en colonne */
 }
+/* Styles pour le menu */
 .menu-container {
     margin-bottom: 10px;
     background-color: #fafafa;
@@ -87,6 +110,7 @@ body {
     left: 50px;
     width: 15%;
     max-height: 100vh;
+    /* Styles pour rendre le menu collant et fixe en position */
 }
 .menu-container .menu {
     width: auto;
@@ -99,7 +123,9 @@ body {
     flex-direction: column;
     line-height: 26px;
     list-style: none;
+    /* Styles pour les liens du menu */
 }
+/* Styles pour les boutons du menu */
 .menu-button {
     color: rgb(39, 38, 38);
     padding: 10px;
@@ -110,20 +136,26 @@ body {
     text-align: left;
     font-weight: bold;
     text-decoration: none;
+    /* Styles pour les boutons avec du padding et une bordure arrondie */
 }
 .menu-button:hover {
     background-color: #91a4d9a6;
+    /* Couleur de fond au survol des boutons */
 }
 .menu-button.active {
     background-color: #91a4d9a6;
+    /* Couleur de fond pour le bouton actif */
 }
 
+/* Styles pour l'image dans le conteneur */
 .container img {
     width: 200px;
     height: 100px;
     margin-bottom: 20px;
+    /* Taille et espacement de l'image */
 }
 
+/* Styles pour les titres */
 h1 {
     text-align: center;
     background: #91a4d9;
@@ -138,14 +170,18 @@ h1 {
     font-size: 24px;
     padding: 10px;
     margin-bottom: 30px;
+     /* Styles pour les titres avec un fond coloré et du padding */
 }
 
+/* Styles pour l'en-tête et le pied de page */
 header,
 footer {
     text-align: center;
     margin-bottom: 20px;
+    /* Centrage du texte pour l'en-tête et le pied de page */
 }
 
+/* Styles pour les sections d'entrée et d'opération */
 .input-section,
 #operation-section {
     margin-bottom: 20px;
@@ -153,11 +189,14 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 1em;
+    /* Flexbox pour centrer les éléments avec un espacement */
 }
 #operation-section {
     margin-top: 20px;
+    /* Ajout de marge en haut pour la section d'opération */
 }
 
+/* Styles pour les champs de saisie numérique */
 input[type="number"] {
     width: 100px;
     padding: 8px;
@@ -165,12 +204,14 @@ input[type="number"] {
     border-radius: 4px;
     margin-right: 5px;
     margin-top: 10px;
+    /* Taille et styles des champs de saisie */
 }
 select {
     padding: 0.375rem 2.25rem 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    /* Styles pour les sélecteurs */
 }
 button {
     padding: 10px 20px;
@@ -180,14 +221,17 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    /* Styles pour les boutons */
 }
 
 button:hover {
     background-color: white;
     color: #91a4d9;
     border: 2px solid #91a4d9;
+    /* Styles pour les boutons au survol */
 }
 
+/* Styles pour le bouton de soumission */
 #submitButton {
     padding: 10px 20px;
     background-color: #91a4d9;
@@ -201,13 +245,15 @@ button:hover {
     background-color: white;
     color: #91a4d9;
     border: 2px solid #91a4d9;
+    /* Styles pour le bouton de soumission au survol */
 }
 
 
-
+/* Styles pour les tableaux des vecteurs propres */
 table.eigenvectors {
     border-collapse: collapse;
     width: 100%;
+    /* Effondrement des bordures et largeur à 100% */
 }
 
 table.eigenvectors,
@@ -216,24 +262,28 @@ table.eigenvectors td {
     border: 1px solid #ccc;
     text-align: center;
     padding: 5px;
+    /* Bordures et styles pour les cellules du tableau */
 }
 
 table.eigenvectors th {
     background-color: #f2f2f2;
+    /* Couleur de fond pour les en-têtes de colonne */
 }
 
+/* Styles pour les éléments de la page de quiz */
 #question {
-    margin-bottom: 20px; /* Add space between question and answer */
+    margin-bottom: 20px; /* Ajout d'espace en bas de l'élément */
 }
 
 #submit {
-    margin-top: 20px; /* Add space between question and answer */
+    margin-top: 20px; /* Ajout d'espace en haut de l'élément */
 }
 
 #result {
-    margin-top: 20px; /* Add space between question and answer */
+    margin-top: 20px; /* Ajout d'espace entre question et reponse */
 }
 
+/* Styles pour les matrices */
 .matrix {
     position: relative;
     /*margin: 0 auto;*/
@@ -243,10 +293,12 @@ table.eigenvectors th {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Flexbox pour centrer les matrices */
 }
 
 .matrix-container p {
     margin-right: 15px;
+    /* Ajout d'espace à droite des paragraphes */
 }
 
 .matrix:before,
@@ -257,20 +309,25 @@ table.eigenvectors th {
     border: 1px solid #000;
     width: 6px;
     height: 100%;
+    /* Bordures pour les côtés des matrices */
 }
 .matrix:before {
     left: -6px;
     border-right: 0px;
+    /* Bordure gauche pour les matrices */
 }
 .matrix:after {
     right: -6px;
     border-left: 0px;
+    /* Bordure droite pour les matrices */
 }
 .matrix td {
     padding: 5px;
     text-align: center;
+    /* Styles pour les cellules des matrices */
 }
 
+/* Styles pour les descriptions mathématiques */
 #math-descriptions {
     margin-top: 20px;
     padding: 20px;
@@ -284,6 +341,7 @@ table.eigenvectors th {
     flex-direction: column;
 }
 
+/* Styles pour le texte dans l'en-tête */
 header p {
     background-image: url(maths.jpeg);
     height: 90px;
@@ -295,25 +353,33 @@ header p {
     color: white;
     font-size: 34px;
     font-weight: bold;
+    /* Styles pour le texte de l'en-tête avec une image de fond */
 }
+/* Styles pour le pied de page */
 footer {
     background-color: #91a4d9;
     color: white;
     padding: 10px;
     margin-top: 50px;
+    /* Styles pour le pied de page avec une couleur de fond et du padding */
 }
+/* Styles pour les champs avec des erreurs */
 .error {
     border: 2px solid red !important;
+    /* Bordure rouge pour les champs en erreur */
 }
 
+/* Styles pour le bouton de connexion */
 .btn-connexion {
     background-color: transparent;
     border: 2px solid white;
     font-weight: bold;
+    /* Bouton de connexion avec fond transparent et bordure blanche */
 }
 .btn-connexion:hover {
     background-color: white;
     color: #91a4d9;
+    /* Styles pour le bouton de connexion au survol */
 }
 
 
