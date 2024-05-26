@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
-<!-- Déclaration du type de document et définition de la langue principale en français -->
 
 <head>
     <meta charset="UTF-8">
-    <!-- Définition de l'encodage des caractères en UTF-8 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Paramètres pour une mise en page adaptée aux mobiles -->
     <title>Calculatrice de Matrices</title>
-    <!-- Titre de la page -->
     <link rel="stylesheet" href="public/styles.css?v=1.25">
-    <!-- Lien vers le fichier CSS pour les styles de la page -->
     <!-- Ajout de Math.js depuis un CDN -->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.2.0/math.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>-->
     <!-- <script src="https://unpkg.com/ml-matrix"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/ml-matrix@6.11.0/matrix.umd.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.1/math.js"></script>
-    <!-- Ajout de la bibliothèque Math.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
-    <!-- Ajout de la bibliothèque js-cookie -->
 </head>
 
 <body>
-    <!-- Contenu principal de la page -->
-    
+    <!--<header>
         <h1>Calculatrice de Matrices</h1>
         <p>Réalisateur : [Votre Nom]</p>
     </header>
@@ -56,24 +48,19 @@
         </footer>
     </div>-->
 
-    <!-- En-tête de la page -->
+    <!-- Inside the body tag -->
     <header>
         <p id="connected" style="display: none;">Bienvenue :&nbsp;<span id="user-name"></span>
             <button style="position: absolute; right: 20px;" onclick="logout()">Déconnexion</button>
         </p>
-        <!-- Message de bienvenue et bouton de déconnexion pour les utilisateurs connectés -->
         <p id="not-connected" style="display: none;">
             <button class="btn-connexion" onclick="window.location.href='captcha.html'">Se
                 connecter</button>
         </p>
-        <!-- Bouton de connexion pour les utilisateurs non connectés -->
     </header>
     <div class="main-container">
-        <!-- Conteneur principal de la page -->
         <div class="menu-container">
-            <!-- Conteneur du menu de navigation -->
             <img src="public/CY-Tech_coul.png" alt="Logo">
-            <!-- Logo de l'institution -->
             <ul class="menu">
                 <a class="menu-button" id="exercices" onclick="navigateByDisplay(this, 'calcul-matriciel')">Exercices</a>
                 <a class="menu-button" id="quiz-link" href="captcha.html">Quiz</a>
@@ -83,27 +70,23 @@
                     target="_blank">Cours</a>
                 <!-- <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/"
                     target="_blank">Exercices</a> -->
+                    <a class="menu-button" id="messagerie" href="captcha.html">Messagerie</a>
                 <a class="menu-button" href="https://cytech.cyu.fr/" target="_blank">CY Tech</a>
             </ul>
-            <!-- Liens de navigation du menu -->
         </div>
         <div class="container">
-            <!-- Conteneur pour le contenu principal -->
             <div class="calcul-matriciel menu-content" style="display: none;">
-                <!-- Section pour les exercices de calcul matriciel, cachée par défaut -->
                 <h1>Calcul Matriciel</h1>
                 <div class="input-section">
-                    <!-- Section de saisie des paramètres de la matrice -->
                     <label for="matrix-size">Taille de la matrice :</label>
-                    <select id="matrix-size" onclick="setupMatrix()">
-                        <option value="0">Choisir une taille</option>
+                    <select id="matrix-size">
                         <option value="2">2x2</option>
                         <option value="3">3x3</option>
                         <option value="4">4x4</option>
                     </select>
+                    <button onclick="setupMatrix()">Continuer</button>
                 </div>
                 <div id="matrix-input"></div>
-                <!-- Section pour les opérations sur les matrices, cachée par défaut -->
                 <div id="operation-section" style="display: none;">
                     <label for="operation">Choisir l'opération :</label>
                     <select id="operation">
@@ -115,19 +98,14 @@
                     <button onclick="performOperation()">Calculer</button>
                 </div>
                 <div id="result"></div>
-                <!-- Section pour afficher les résultats des calculs -->
             </div>
             <div class="gestion-utilisateur menu-content" style="display: none;">
-                <!-- Section pour la gestion des utilisateurs, cachée par défaut -->
                 <button onclick="promptForCredentials()">Créer un utilisateur</button>
                 <div class="gestion-utilisateur-content"></div>
-                <!-- Contenu pour la gestion des utilisateurs -->
             </div>
             <div class="main-element">
-                <!-- Élément principal pour les FAQ -->
                 <h1>Réponses aux Questions (FAQ)</h1>
                 <div id="math-descriptions" class="eigenvalues">
-                    <!-- Section pour les valeurs propres -->
                     <h1>Les valeurs propres</h1>
                     <p onclick="showDesc('desc1')" style="cursor:pointer"><strong>Qu'est ce qu'une valeur propre d'une
                             matrice ? (Définition)</strong></p>
@@ -173,7 +151,6 @@
                 </div>
 
                 <div id="math-descriptions" class="eigenvectors">
-                    <!-- Section pour les vecteurs propres -->
                     <h1>Les vecteurs propres</h1>
                     <p onclick="showDesc('desc4')" style="cursor:pointer"><strong>Qu'est-ce que sont les vecteurs
                             propres d'une matrice ? (Définition)</strong></p>
@@ -241,7 +218,6 @@
                 </div>
 
                 <div id="math-descriptions" class="determinant">
-                    <!-- Section pour le déterminant d'une matrice -->
                     <h1>Le déterminant d'une matrice</h1>
                     <p onclick="showDesc('desc6')" style="cursor:pointer"><strong>Qu'est-ce que le déterminant d'une
                             matrice ? (Définition)</strong></p>
@@ -352,7 +328,6 @@
                 </div>
 
                 <div id="math-descriptions" class="diagonalize">
-                    <!-- Section pour les matrices diagonales -->
                     <h1>Une matrice diagonale</h1>
                     <p onclick="showDesc('desc14')" style="cursor:pointer"><strong>Qu'est-ce qu'une matrice diagonale ?
                             (Définition)</strong></p>
@@ -440,18 +415,15 @@
         </div>
     </div>
 
-    <!-- Scripts de la page -->
     <script src="public/script2.js?v=1.56"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<!-- Script pour MathJax -->
+
 
 </body>
 <footer>
-    <!-- Pied de page -->
     <p>&copy; 2024 Calculatrice de Matrices</p>
     <div class="footer-social">
-        <!-- Liens vers les réseaux sociaux -->
         <a href="https://www.facebook.com/CYTechGE" target="_blank"><img
                 src="https://cytech.cyu.fr/jspOM/images/icons/facebook.svg" width="30" alt="Facebook"></a>
         <a href="https://www.instagram.com/cy.tech/" target="_blank"><img
