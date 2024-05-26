@@ -284,19 +284,6 @@ table.eigenvectors th {
     flex-direction: column;
 }
 
-#message-bloc{
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    text-align: justify;
-    overflow: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
 header p {
     background-image: url(maths.jpeg);
     height: 90px;
@@ -335,66 +322,4 @@ footer {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-#message-bloc {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    text-align: justify;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    height: 400px; /* Ajuster la hauteur selon vos besoins */
-}
-
-#message-bloc h2 {
-    text-align: center;
-    color: #333;
-}
-
-#messages {
-    flex: 1;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
-}
-
-#messages .message {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fafafa;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-.message-input {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#message {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none; /* Empêche le redimensionnement de la zone de texte */
-}
-
-#sendMessageButton {
-    padding: 10px;
-    background-color: #91a4d9;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#sendMessageButton:hover {
-    background-color: #7892c2;
 }

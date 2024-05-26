@@ -1,5 +1,3 @@
-// scriptCaptcha.js
-
 let captchaText = document.getElementById('captcha');
 var ctx = captchaText.getContext("2d");
 ctx.font = "25px Roboto";
@@ -9,6 +7,7 @@ let userText = document.getElementById('textBox');
 let submitButton = document.getElementById('submitButton');
 let output = document.getElementById('output');
 let refreshButton = document.getElementById('refreshButton');
+
 
 var captchaStr = "";
 
@@ -22,6 +21,7 @@ let alphaNums = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
                  'x', 'y', 'z', '0', '1', '2', '3', 
                  '4', '5', '6', '7', '8', '9', '!', '.', '?', 'é', 'è', 'î'];
 
+
 function generate_captcha() {
     let emptyArr = [];
 
@@ -32,55 +32,31 @@ function generate_captcha() {
     captchaStr = emptyArr.join('');
 
     ctx.clearRect(0, 0, captchaText.width, captchaText.height);
-    ctx.fillText(captchaStr, captchaText.width / 4, captchaText.height / 2);
+    ctx.fillText(captchaStr, captchaText.width/4, captchaText.height/2);
+
+    /*output.innerHTML = "";*/
 }
 
 generate_captcha();
-
-document.querySelectorAll('.menu-button').forEach(button => {
-    button.addEventListener('click', function(event) {
-        const returnUrl = event.target.getAttribute('href');
-        document.cookie = `returnUrl=${returnUrl}; path=/`;
-    });
-});
 
 function check_captcha() {
     if (userText.value === captchaStr) {
         output.className = "correctCaptcha";
         output.innerHTML = "Correct!";
-        const returnUrl = getCookie('returnUrl') || 'index.html';
-        document.cookie = "isLoggedIn=true; path=/"; // Set the login status
-        window.location.href = returnUrl;
+        window.location.href = "login.html?returnUrl=quiz.html";
     } else {
         output.className = "incorrectCaptcha";
-        output.innerHTML = "Incorrect, essayer encore s'il vous plaît!";
+        output.innerHTML = "Incorret, essayer encore s'il vous plaît!";
         generate_captcha();
     }
 }
 
-function getCookie(name) {
-    let cookieArr = document.cookie.split(";");
-    for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
-        if (name == cookiePair[0].trim()) {
-            return decodeURIComponent(cookiePair[1]);
-        }
-    }
-    return null;
-}
-
-function checkLoginStatus() {
-    const isLoggedIn = getCookie('isLoggedIn');
-    if (!isLoggedIn) {
-        window.location.href = 'captcha.html';
-    }
-}
-
-userText.addEventListener('keyup', function (e) {
+userText.addEventListener('keyup', function(e) {
     if (e.key === 'Enter') {
-        check_captcha();
+       check_captcha();
     }
 });
 
 submitButton.addEventListener('click', check_captcha);
 refreshButton.addEventListener('click', generate_captcha);
+

@@ -173,8 +173,7 @@ function navigateByDisplay(object, className) {
     for (let i = 0; i < menu.length; i++) {
         menu[i].classList.remove('active');
     }
-    const user = Cookies.get("user");
-    if (className == 'gestion-utilisateur' && user && JSON.parse(user).role == 'admin') {
+    if (className == 'gestion-utilisateur') {
         let content = document.getElementsByClassName('gestion-utilisateur-content');
         fetch('/scripts/users.php',
             {
@@ -197,11 +196,6 @@ function navigateByDisplay(object, className) {
                 table += '</table>';
                 content[0].innerHTML = table;
             });
-    } else {
-        if (className == 'gestion-utilisateur' && (!user || JSON.parse(user).role == 'admin')) {
-            alert('Vous n\'avez pas les droits nécessaires pour accéder à cette page');
-            return;
-        }
     }
     elements[0].style.display = 'block';
     if (object && object.classList)
@@ -282,10 +276,7 @@ function setupMatrix() {
         matrixInput.appendChild(document.createElement('br'));
     }
 
-    if (matrixSize == 0) {
-        document.getElementById('operation-section').style.display = 'none';
-    } else
-        document.getElementById('operation-section').style.display = 'flex';
+    document.getElementById('operation-section').style.display = 'flex';
 }
 
 function getMatrix() {
@@ -394,5 +385,7 @@ function performOperation() {
         }
         document.getElementById('not-connected').style.display = 'flex';
     }
+
+
 
 })();
