@@ -1,0 +1,62 @@
+<!-- messagerie.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagerie</title>
+    <link rel="stylesheet" href="public/styles.css?v=1.25">
+</head>
+<body onload="checkLoginStatus()">
+    <header>
+        <p id="connected" style="display: none;">Bienvenue :&nbsp;<span id="user-name"></span>
+            <button style="position: absolute; right: 20px;" onclick="logout()">Déconnexion</button>
+        </p>
+        <p id="not-connected" style="display: none;">
+            <button class="btn-connexion" onclick="window.location.href='captcha.html'">Se connecter</button>
+        </p>
+    </header>
+    <div class="main-container">
+        <div class="menu-container">
+            <img src="public/CY-Tech_coul.png" alt="Logo">
+            <ul class="menu">
+                <a class="menu-button" href="index.html?func=calcul-matriciel" onclick="navigateByDisplay(this, 'calcul-matriciel')">Exercices</a>
+                <a class="menu-button" href="quiz.html">Quiz</a>
+                <a class="menu-button admin-role" href="index.html?func=gestion-utilisateur" style="display: none;" onclick="navigateByDisplay(this, 'gestion-utilisateur')">Gestion des utilisateurs</a>
+                <a class="menu-button active" id="messagerie" href="messagerie.html">Messagerie</a>
+                <a class="menu-button" href="https://cytech.cyu.fr/" target="_blank">CY Tech</a>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="main-element">
+                <div id="message-bloc">
+                    <h2>Messagerie</h2>
+                    <div id="messages"></div>
+                    <div class="message-input">
+                        <textarea id="message" placeholder="Votre message"></textarea>
+                        <button id="sendMessageButton">Envoyer</button>
+                    </div>
+                    <input type="hidden" id="username" value="Utilisateur"> <!-- Remplacer "Utilisateur" par le nom réel de l'utilisateur -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="public/script2.js?v=1.56"></script>
+    <script src="scriptOperations.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+<footer>
+    <p>&copy; 2024 Calculatrice de Matrices</p>
+    <div class="footer-social">
+        <a href="https://www.facebook.com/CYTechGE" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/facebook.svg" width="30" alt="Facebook"></a>
+        <a href="https://www.instagram.com/cy.tech/" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/instagram.svg" width="30" alt="Instagram"></a>
+        <a href="https://twitter.com/CY__Tech" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/twitter.svg" width="30" alt="Twitter"></a>
+        <a href="https://www.linkedin.com/school/cy-tech/" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/linkedin.svg" width="30" alt="LinkedIn"></a>
+        <a href="https://www.youtube.com/c/CYTech_GE" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/youtube.svg" width="30" alt="YouTube"></a>
+    </div>
+</footer>
+</html>

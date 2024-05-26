@@ -49,25 +49,23 @@ function calculateDeterminant(matrix) {
 function calculateEigenvalues(matrix) {
     // Code pour calculer les valeurs propres
     const { eigs, multiply, column, transpose, matrixFromColumns } = math
-    const ans = eigs(matrix) // renvoie les valeurs et vecteurs propres
-    const E = ans.values.map(value => parseFloat(value.toFixed(2))); // Convertir en valeurs fixes
-
+    const ans = eigs(matrix) // returns {values: [E1,E2...sorted], eigenvectors: [{value: E1, vector: v2}, {value: e, vector: v2}, ...]
+    const E = ans.values.map(value => parseFloat(value.toFixed(2))); // Convert to fixed values
     E.sort((a, b) => b - a);
     return E
 }
 
 function calculateEigenvectors(matrix) {
-    // Calcule les vecteurs propres d'une matrice
     const { eigs, multiply, column, transpose, matrixFromColumns } = math
-    const ans = eigs(matrix) // renvoie les valeurs et vecteurs propres
+    const ans = eigs(matrix) // returns {values: [E1,E2...sorted], eigenvectors: [{value: E1, vector: v2}, {value: e, vector: v2}, ...]
     const V = ans.eigenvectors
 
-    // Trier les vecteurs propres en fonction des valeurs propres
+    // Sort eigenvectors based on eigenvalues
     V.sort((a, b) => b.value - a.value);
 
     const unnormalizedEigenvectors = V.map((eigenvector) => {
         const { vector } = eigenvector;
-        // Redimensionne the vector to a size of 2
+        // Resize the vector to a size of 2
         const resizedVector = vector.slice(0, 2);
         return { value: eigenvector.value, vector: resizedVector };
     })
@@ -75,7 +73,6 @@ function calculateEigenvectors(matrix) {
     //console.log(unnormalizedEigenvectors);
     return unnormalizedEigenvectors
 }
-// Envoie les informations d'identification pour l'enregistrement
 function sendCredentials(username, password) {
     // Replace 'yourWebServiceURL' with the actual URL of your web service
     const url = '/scripts/register.php';
@@ -110,7 +107,6 @@ function sendCredentials(username, password) {
             alert('Erreur lors de l\'enregistrement');
         });
 }
-// Supprime un utilisateur
 function deleteUser(username) {
 
     const url = '/scripts/delete.php';
@@ -152,7 +148,7 @@ function deleteUser(username) {
 
 }
 
-// Demande les informations d'identification à l'utilisateur
+// Function to prompt user for username and password
 function promptForCredentials() {
     const username = prompt('Merci de saisir le nom d\'utilisateur:');
     const password = prompt('Merci de saisir le mot de passe:');
@@ -163,12 +159,10 @@ function promptForCredentials() {
         alert('Username or password not provided');
     }
 }
-// Fonction pour déconnecter l'utilisateur
 function logout() {
     Cookies.remove('user');
     window.location.href = 'index.html';
 }
-// Fonction pour naviguer en affichant le contenu correspondant
 function navigateByDisplay(object, className) {
     let elements = document.getElementsByClassName(className);
     let menu = document.getElementsByClassName('menu-button');
@@ -213,7 +207,6 @@ function navigateByDisplay(object, className) {
     if (object && object.classList)
         object.classList.add('active');
 }
-// Affiche ou masque les descriptions en fonction de la classe
 function showDesc(className) {
     let elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; i++) {
@@ -223,7 +216,6 @@ function showDesc(className) {
             elements[i].style.display = 'block';
     }
 }
-// Diagonalise une matrice
 function diagonalize(matrix) {
     const { eigs, diag } = math
     const { values } = eigs(matrix);

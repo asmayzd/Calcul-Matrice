@@ -1,109 +1,73 @@
-<!DOCTYPE html>
-<html lang="fr"> <!-- Déclaration du type de document et définition de la langue principale en français -->
+<!-- quiz.html -->
 
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Définition des métadonnées pour l'encodage des caractères, compatibilité IE, et vue adaptée aux mobiles -->
     <title>Calculatrice de Matrices</title>
-        <!-- Titre de la page -->
     <link rel="stylesheet" href="public/styles.css?v=1.25">
-    <!-- Lien vers le fichier CSS pour les styles de la page -->
-    <!-- Ajout de Math.js depuis un CDN -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.2.0/math.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>-->
-    <!-- <script src="https://unpkg.com/ml-matrix"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/ml-matrix@6.11.0/matrix.umd.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.1/math.js"></script>
-    <!-- Ajout de la bibliothèque Math.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
-    <!-- Ajout de la bibliothèque js-cookie -->
 </head>
-
-<body>
-
-
-    <!-- Contenu principal de la page -->
+<body onload="checkLoginStatus()">
     <header>
-        <!-- En-tête de la page avec le statut de connexion de l'utilisateur -->
         <p id="connected" style="display: none;">Bienvenue :&nbsp;<span id="user-name"></span>
             <button style="position: absolute; right: 20px;" onclick="logout()">Déconnexion</button>
         </p>
-        <!-- Message de bienvenue et bouton de déconnexion pour les utilisateurs connectés -->
         <p id="not-connected" style="display: none;">
-            <button class="btn-connexion" onclick="window.location.href='captcha.html'">Se
-                connecter</button>
+            <button class="btn-connexion" onclick="window.location.href='captcha.html'">Se connecter</button>
         </p>
-        <!-- Bouton de connexion pour les utilisateurs non connectés -->
     </header>
     <div class="main-container">
-        <!-- Conteneur principal -->
         <div class="menu-container">
-            <!-- Conteneur du menu de navigation -->
             <img src="public/CY-Tech_coul.png" alt="Logo">
-            <!-- Logo de l'institution -->
             <ul class="menu">
-                <!-- Liste des liens du menu -->
                 <a class="menu-button" href="index.html?func=calcul-matriciel" onclick="navigateByDisplay(this, 'calcul-matriciel')">Exercices</a>
-                <a class="menu-button active" href="captcha.html">Quiz</a>
-                <a class="menu-button admin-role" href="index.html?func=gestion-utilisateur" style="display: none;"
-                    onclick="navigateByDisplay(this, 'gestion-utilisateur')">Gestion des utilisateurs</a>
-                <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/"
-                    target="_blank">Cours</a>
-                <!-- <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/"
-                    target="_blank">Exercices</a> -->
+                <a class="menu-button active" href="quiz.html">Quiz</a>
+                <a class="menu-button admin-role" href="index.html?func=gestion-utilisateur" style="display: none;" onclick="navigateByDisplay(this, 'gestion-utilisateur')">Gestion des utilisateurs</a>
+                <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/" target="_blank">Cours</a>
+                <a class="menu-button" id="messagerie" href="messagerie.html">Messagerie</a>
                 <a class="menu-button" href="https://cytech.cyu.fr/" target="_blank">CY Tech</a>
             </ul>
             
         </div>
         <div class="container">
-            <!-- Conteneur du contenu principal -->
             <div class="main-element">
                 <div id="math-descriptions" class="eigenvalues" >
-                    <!-- Conteneur pour le quiz des opérations matricielles -->
                     <h1>QUIZ : OPÉRATIONS MATRICIELLES</h1><br><br>
-                    <!-- Titre du quiz -->
                     <div id="matrice">
-                        <!-- Section pour le numéro de la question -->
                         <p id="question-number">Question 1 sur 5</p>
                         <br><br>
                     </div>
                     <div id="operation-container">
-                        <!-- Conteneur pour afficher l'opération actuelle -->
                         <h3 id="current-operation"></h3>
                         <br><br>
                     </div>
                     <div id="matrix-inputs">
-                        <!-- Conteneur pour les matrices d'entrée -->
                         <div id="matrix-a-container">
-                            <!-- Conteneur pour la matrice A -->
                             <h3>Matrice A:</h3>
                             <table id="matrix-a"></table>
                         </div>
                         <div id="matrix-b-container" style="display: none;">
-                            <!-- Conteneur pour la matrice B, caché par défaut -->
                             <h3>Matrice B:</h3>
                             <table id="matrix-b"></table>
                         </div>
                         <br><br>
                     </div>
                     <div id="result-matrix-container">
-                        <!-- Conteneur pour les résultats des matrices -->
                         <h3>Entrez le résultat:</h3>
                         <table id="result-matrix"></table>
                     </div>
                     <br><br>
                     <button id="calculate" type="button">Suivant</button>
-                    <!-- Bouton pour soumettre la réponse et passer à la question suivante -->
                     <br><br>
                     <div id="results" style="display: none;">
-                        <!-- Section pour afficher les résultats -->
                         <h2>Résultats</h2>
                         <p id="score"></p>
                         <br><br>
                         <a href="quiz.html">Relancer le quiz</a>
-                        <!-- Lien pour relancer le quiz -->
                     </div>
 
                 </div>
@@ -113,18 +77,14 @@
 
     <script src="public/script2.js?v=1.56"></script>
     <script src="scriptOperations.js"></script>
-    <!-- Script pour les opérations sur les matrices -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- Script pour MathJax -->
 
 
 </body>
 <footer>
-    <!-- Pied de page -->
     <p>&copy; 2024 Calculatrice de Matrices</p>
     <div class="footer-social">
-        <!-- Liens vers les réseaux sociaux -->
         <a href="https://www.facebook.com/CYTechGE" target="_blank"><img
                 src="https://cytech.cyu.fr/jspOM/images/icons/facebook.svg" width="30" alt="Facebook"></a>
         <a href="https://www.instagram.com/cy.tech/" target="_blank"><img
