@@ -28,7 +28,7 @@ Un menu dans la colonne de gauche pour accéder aux différentes parties du site
 
 
 
-![image(2)](Test/14...png)
+![image(2)](Test/13...png)
 
 
 
@@ -53,7 +53,7 @@ Dans la partie Cours, on peut accéder à un autre site : Diagonalisation des ma
 ![image(6)](Test/6...png)
 
 Dans la partie messagerie, à laquelle on ne peut accéder qu'après connexion et/ou inscription, on accède à une page ou les utilisateurs ainsi que l’administrateur peuvent échanger entre eux sur le thème des calculs matriciels pour s’entraider et s'améliorer.
-![image(6)](Test/12.png)
+![image(6)](Test/14...png)
 
 Dans la partie CY Tech, on accède au site de l'école : CY Tech | CY Cergy Paris Université (cyu.fr) .
 ![image(7)](Test/7...png)
