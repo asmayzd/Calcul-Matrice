@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagerie</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
+</head>
+<body>
+<header>
+    <p id="connected" style="display: none;">Bienvenue :&nbsp;<span id="user-name"></span>
+        <button style="position: absolute; right: 20px;" onclick="logout()">Déconnexion</button>
+    </p>
+    <p id="not-connected" style="display: none;">
+        <button class="btn-connexion" onclick="window.location.href='login.html'">Se connecter</button>
+    </p>
+</header>
+<div class="main-container">
+    <div class="menu-container">
+        <img src="img/CY-Tech_coul.png" alt="Logo">
+        <ul class="menu">
+            <a class="menu-button" href="index.html?func=calcul-matriciel" onclick="navigateByDisplay(this, 'calcul-matriciel')">Exercices</a>
+            <a class="menu-button" id="quiz-link" href="captcha.html">Quiz</a>
+            <a class="menu-button admin-role" href="index.html?func=gestion-utilisateur" style="display: none;" onclick="navigateByDisplay(this, 'gestion-utilisateur')">Gestion des utilisateurs</a>
+            <a class="menu-button" href="https://www.methodemaths.fr/diagonalisation_matrices/" target="_blank">Cours</a>
+            <a class="menu-button active" href="messagerie.html">Messagerie</a>
+            <a class="menu-button" href="https://cytech.cyu.fr/" target="_blank">CY Tech</a>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="main-element">
+            <h1>Messagerie</h1>
+            <div id="chat-container">
+                <!-- Conteneur pour les messages -->
+            </div>
+            <input type="text" id="message-input" placeholder="Tapez votre message ici...">
+            <button id="send-button">Envoyer</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+    (function () {
+        const user = Cookies.get("user");
+        if (user) {
+            let span = document.getElementById("user-name");
+            span.innerHTML = JSON.parse(user).username;
+            document.getElementById('connected').style.display = 'flex';
+            document.getElementById('quiz-link').href = 'quiz.html';
+        } else {
+            window.location.href = 'login.html?returnUrl=messagerie.html';
+        }
+    })();
+
+    function logout() {
+        Cookies.remove('user');
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+<footer>
+    <p>&copy; 2024 Calculatrice de Matrices</p>
+    <div class="footer-social">
+        <a href="https://www.facebook.com/CYTechGE" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/facebook.svg" width="30" alt="Facebook"></a>
+        <a href="https://www.instagram.com/cy.tech/" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/instagram.svg" width="30" alt="Instagram"></a>
+        <a href="https://twitter.com/CY__Tech" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/twitter.svg" width="30" alt="Twitter"></a>
+        <a href="https://www.linkedin.com/school/cy-tech/" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/linkedin.svg" width="30" alt="LinkedIn"></a>
+        <a href="https://www.youtube.com/c/CYTech_GE" target="_blank"><img src="https://cytech.cyu.fr/jspOM/images/icons/youtube.svg" width="30" alt="YouTube"></a>
+    </div>
+</footer>
+</html>
