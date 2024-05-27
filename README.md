@@ -28,7 +28,7 @@ Un menu dans la colonne de gauche pour accéder aux différentes parties du site
 
 
 
-![image(2)](Test/13..png)
+![image(2)](Test/13...png)
 
 
 
